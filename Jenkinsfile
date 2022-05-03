@@ -12,7 +12,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script{
-                    dockerapp = docker.build("gabrielalegra/pedelogo-catalogo:${env.BUILD.ID}", '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
+                    dockerapp = docker.build("gabrielalegra/pedelogo-catalogo:${env.BUILD_ID}", '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 script{
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                     dockerapp.push('latest')
-                    dockerapp.push("${env.BUILD.ID}")
+                    dockerapp.push("${env.BUILD_ID}")
                     }
                 }
             }
