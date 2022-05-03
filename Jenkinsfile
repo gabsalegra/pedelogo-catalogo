@@ -5,7 +5,7 @@ pipeline {
 
         stage('Get Source'){
             steps {
-                git url: 'https://gabriel_alegra@bitbucket.org/gabriel_alegra/teste_sonarqube.git', branch: 'main'
+                git url: 'https://github.com/gabsalegra/pedelogo-catalogo.git', branch: 'main'
             }
 
         }
