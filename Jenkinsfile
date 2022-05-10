@@ -1,3 +1,6 @@
+@Library('google-chat-repo@1.0')
+def GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAAC0fQyiA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=kW_raPlXqUnVgQDBfymf8A0IhPtaHwQNfoekzNPrIN8%3D'
+
 pipeline {
     agent any
     
@@ -36,6 +39,14 @@ pipeline {
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kube')
             }
         }
+}
+post {
+        success {
+              sendGoogleChat("This is a _simple_ text message " +
+                "with a <https://github.com/mkutz/jenkins-google-chat-notification|link>" +
+                "\nand a line break, " +
+                "which might be interesting to <users/all> users in the Group.") 
+}
 }
 
 }
