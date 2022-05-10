@@ -50,7 +50,7 @@ post {
         success {
               sendGoogleChatBuildReport(Build: env.BUILD_TAG,
                     message: "Teste de mensagem de texto: Pipeline feita com sucesso." +
-                             "<br>Teste para substituir o melhor BOT da NASA.")
+                             "<br>Teste de automação dos processos, desde buildar a imagem no dockerhub a deployar no k8s.")
 }
 }
 }
