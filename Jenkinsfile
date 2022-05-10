@@ -1,7 +1,13 @@
-@Library('google-chat-repo@1.0')
-def GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAAC0fQyiA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=kW_raPlXqUnVgQDBfymf8A0IhPtaHwQNfoekzNPrIN8%3D'
-
+//Declarative Pipeline
 pipeline {
+    environment {
+      
+//chat-test    
+        GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAAC0fQyiA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=kW_raPlXqUnVgQDBfymf8A0IhPtaHwQNfoekzNPrIN8%3D'
+//chat-zabbix GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAAtVKh0NY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=EXLRHKKpL8xUbYHVRX3s-QfbdMjhFaXmTzlum9fh6qs%3D'
+//chat-devs      GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAA1XvQYEU/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=P4L8IUHFvHhv5t3lP4R7wzQAn-6V_17KlTELvgQjuls%3D'
+    
+    }
     agent any
     
     stages {
@@ -42,11 +48,9 @@ pipeline {
 }
 post {
         success {
-              sendGoogleChat("This is a _simple_ text message " +
-                "with a <https://github.com/mkutz/jenkins-google-chat-notification|link>" +
-                "\nand a line break, " +
-                "which might be interesting to <users/all> users in the Group.") 
-}
+              sendGoogleChatBuildReport(Build: env.BUILD_TAG,
+                    message: "Teste de mensagem de texto: Pipeline feita com sucesso." +
+                             "<br>Teste para substituir o melhor BOT da NASA.")
 }
 
 }
