@@ -47,9 +47,9 @@ namespace PedeLogo.Catalogo.Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v2", new OpenApiInfo
                 {
-                    Version = "v1",
+                    Version = "v2",
                     Title = "API para cadastro de Produtos",
                     Description = "API para cadastro de Produtos"
                 });
@@ -68,7 +68,7 @@ namespace PedeLogo.Catalogo.Api
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catálogo de produtos API");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Catálogo de produtos API");
             });
 
             app.UseHealthMiddleware();
