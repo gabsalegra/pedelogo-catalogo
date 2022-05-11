@@ -1,7 +1,7 @@
 //Declarative Pipeline
 pipeline {
     environment {
-      
+        TAG_VERSION = "${env.BUILD_ID}"
 //chat-test    
         GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAAC0fQyiA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=kW_raPlXqUnVgQDBfymf8A0IhPtaHwQNfoekzNPrIN8%3D'
 //chat-zabbix GOOGLE_CHAT_URL = 'https://chat.googleapis.com/v1/spaces/AAAAtVKh0NY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=EXLRHKKpL8xUbYHVRX3s-QfbdMjhFaXmTzlum9fh6qs%3D'
@@ -42,6 +42,8 @@ pipeline {
                 }
             }
             steps {
+                sh 'sed -i "s/{{tag}}/$TAG_VERSION/g" ./k8s/api.yaml'
+                sh 'cat ./k8s/api.yaml'
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kube')
             }
         }

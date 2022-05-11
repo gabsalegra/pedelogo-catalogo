@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: gabrielalegra/pedelogo-catalogo
+        image: gabrielalegra/pedelogo-catalogo:{{tag}}
         ports:
         - containerPort: 80
         imagePullPolicy: Always
